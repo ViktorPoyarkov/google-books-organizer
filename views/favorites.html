@@ -1,0 +1,16 @@
+<div class="list-page-container">
+    <h1>Favorites</h1>
+    <a class="navigation-link" href="#!/list-books">To List Page</a>
+    <div class="books-container">
+        <div class="book-review-container" ng-repeat="dataBook in dataBooks">
+            <div class="favorites-button">
+                <button ng-show="dataBook.inFavorites" ng-click="removeFromFavorites(dataBook)">Remove From Favorites</button>
+            </div>
+            <div class="book-title">{{dataBook.volumeInfo.title}}</div>
+            <div class="authors-and-date">
+                <span ng-repeat="author in dataBook.volumeInfo.authors">{{author}}<span ng-hide="$last">, </span></span>, {{dataBook.volumeInfo.publishedDate}}
+            </div>
+            <div class="book-description" ng-show="dataBook.volumeInfo.description"><span class="book-description-title">Description: </span>{{add3Dots(dataBook.volumeInfo.description, 400)}}</div>
+        </div>
+    </div>
+</div>

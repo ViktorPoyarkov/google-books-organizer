@@ -1,0 +1,34 @@
+<div class="more-details-container">
+    <h1>Book's Details</h1>
+    <button ng-click="closeShowMorePopup()" class="close-more-details-button">Close</button>
+    <img src="{{elementInPopup.volumeInfo.imageLinks.smallThumbnail}}"
+         ng-show="elementInPopup.volumeInfo.imageLinks && elementInPopup.volumeInfo.imageLinks.smallThumbnail"/>
+    <div class="book-title">{{elementInPopup.volumeInfo.title}}</div>
+    <div class="authors-and-date">
+        <span ng-repeat="authorInPopup in elementInPopup.volumeInfo.authors">{{authorInPopup}}<span ng-hide="$last">, </span></span>, {{elementInPopup.volumeInfo.publishedDate}}
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.description">
+        <span class="book-description-title">Description: </span>{{elementInPopup.volumeInfo.description}}
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.categories">
+        <span class="book-description-title">Categories: </span>
+        <span ng-repeat="category in elementInPopup.volumeInfo.categories">{{category}}<span ng-hide="$last">, </span>
+        </span>
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.pageCount">
+        <span class="book-description-title">Pages: </span>
+        <span>{{elementInPopup.volumeInfo.pageCount}}</span>
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.publisher">
+        <span class="book-description-title">Publisher: </span>
+        <span>{{elementInPopup.volumeInfo.publisher}}</span>
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.language">
+        <span class="book-description-title">Language: </span>
+        <span>{{elementInPopup.volumeInfo.language}}</span>
+    </div>
+    <div class="book-description" ng-show="elementInPopup.volumeInfo.printType">
+        <span class="book-description-title">Print Type: </span>
+        <span>{{elementInPopup.volumeInfo.printType}}</span>
+    </div>
+</div>

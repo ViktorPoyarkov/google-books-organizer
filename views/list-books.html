@@ -1,0 +1,36 @@
+<div class="list-page-container" ng-hide="hidePage">
+    <h1>List page</h1>
+    <a class="navigation-link" href="#!/favorites">To Favorites</a>
+    <div class="search-container">
+        <form ng-submit="searchBooks()">
+            <input type="text" placeholder="Search Books" name="search" ng-model="searchParameter"/>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div class="books-container">
+        <div class="book-review-container" ng-repeat="dataBook in dataBooks">
+            <div class="favorites-button">
+                <span ng-show="dataBook.inFavorites" class="favorite-red">Favorite</span>
+                <button ng-hide="dataBook.inFavorites" ng-click="toFavorites(dataBook)">To Favorites</button>
+                <button ng-show="dataBook.inFavorites" ng-click="removeFromFavorites(dataBook)">Remove From Favorites</button>
+            </div>
+            <div class="book-title">{{dataBook.volumeInfo.title}}</div>
+            <div class="authors-and-date">
+                <span ng-repeat="author in dataBook.volumeInfo.authors">{{author}}<span ng-hide="$last">, </span></span>, {{dataBook.volumeInfo.publishedDate}}
+            </div>
+            <div class="book-description" ng-show="dataBook.volumeInfo.description"><span class="book-description-title">Description: </span>{{add3Dots(dataBook.volumeInfo.description, 400)}}</div>
+            <div class="more-details">
+                <button ng-click="openShowMore(dataBook)">Show More</button>
+            </div>
+        </div>
+    </div>
+    <div class="book-pagination-container">
+        <div ng-show="needNextPage || needPreviousPage">Page: {{pageNum}}</div>
+        <div class="book-pagination-buttons" ng-show="needNextPage || needPreviousPage">
+            <button ng-click="previousPage()" ng-show="needPreviousPage">Previous page</button>
+            <button ng-click="nextPage()" ng-show="needNextPage">Next page</button>
+        </div>
+    </div>
+</div>
+<div class="more-details-popup" ng-include="'views/more-details-popup.html'" ng-show="elementInPopup && elementInPopup.popupOn"></div>
+
